@@ -12,7 +12,7 @@ dist = path.join(__dirname, '../dist');
 app = express();
 
 var React =require('react');
-var ReactApp = React.createFactory(require(__dirname + '/components/ReactApp'));
+var SearchPage = React.createFactory(require(__dirname + '/components/searchPage'));
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -29,7 +29,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
-  var reactHtml = React.renderToString(ReactApp({}));
+  var reactHtml = React.renderToString(SearchPage({}));
   res.render('index.ejs', {reactOutput: reactHtml});
 });
 
