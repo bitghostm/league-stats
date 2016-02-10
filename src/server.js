@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/summoner/:name', summonerService, function(req, res) {
-  res.render('summonerPage.ejs', {data: {title: 'Summoner stats', summonerData: {name: 'name1'}}});
+  res.render('summonerPage.ejs', {data: {title: 'Summoner stats', summonerData: req.summonerData}});
 });
 
 app.use(function(req, res, next) {
