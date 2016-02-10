@@ -11,7 +11,8 @@ require("babel/register");
 dist = path.join(__dirname, '../dist');
 app = express();
 
-var React =require('react');
+var React = require('react');
+var summonerService = require('./services/summonerService');
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -31,9 +32,7 @@ app.get('/', function(req, res) {
   res.render('index.ejs', {data: {title: 'League stats'}});
 });
 
-app.get('/summoner/:name', function(req, res) {
-
-
+app.get('/summoner/:name', summonerService, function(req, res) {
   res.render('summonerPage.ejs', {data: {title: 'Summoner stats', summonerData: {name: 'name1'}}});
 });
 
