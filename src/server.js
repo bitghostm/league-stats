@@ -12,7 +12,6 @@ dist = path.join(__dirname, '../dist');
 app = express();
 
 var React =require('react');
-var SearchPage = React.createFactory(require(__dirname + '/components/searchPage'));
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -29,12 +28,13 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
-  var reactHtml = React.renderToString(SearchPage({}));
-  res.render('index.ejs', {reactOutput: reactHtml});
+  res.render('index.ejs', {data: {title: 'League stats'}});
 });
 
-app.get('/summoner', function(req, res) {
-  res.render('client', { title: 'Express' });
+app.get('/summoner/:name', function(req, res) {
+
+
+  res.render('summonerPage.ejs', {data: {title: 'Summoner stats', summonerData: {name: 'name1'}}});
 });
 
 app.use(function(req, res, next) {

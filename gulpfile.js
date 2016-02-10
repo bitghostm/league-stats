@@ -52,7 +52,8 @@ webpack = function(name, ext, watch) {
 };
 
 js = function(watch) {
-  return webpack("main", "js", watch);
+  webpack("searchMain", "js", watch);
+  webpack("summonerMain", "js", watch);
 };
 
 gulp.task('js', function() {
