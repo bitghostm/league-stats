@@ -1,0 +1,20 @@
+{
+  "name": "yo17",
+  "version": "0.0.0",
+  "authors": [
+    "Ye, Marco"
+  ],
+  "description": "Yo17 团购",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {}
+}
