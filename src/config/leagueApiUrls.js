@@ -3,6 +3,7 @@ var config = require('./config.js');
 var urls = {
     getSummonerByName: 'https://na.api.pvp.net/api/lol/{region}/v1.4/summoner/by-name/',
     getMatchListBySid: 'https://na.api.pvp.net/api/lol/{region}/v2.2/matchlist/by-summoner/',
+    getMatchById: 'https://na.api.pvp.net/api/lol/{region}/v2.2/match/',
     getChampionById: 'https://na.api.pvp.net/api/lol/static-data/{region}/v1.2/champion/'
 };
 

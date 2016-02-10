@@ -102,6 +102,6 @@ gulp.task('watch', ['copy'], function() {
   livereload.listen();
   gulp.watch([dist_path + "/**/*"]).on('change', livereload.changed);
   gulp.watch([src_path + "/styles/*.less"], ['css']);
-
+  gulp.watch([src_path + "/scripts/*.js"], ['js-dev']);
   return gulp.watch([src_path + "/**/*.html"], ['copy']);
 });
