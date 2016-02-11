@@ -11,7 +11,6 @@ require("babel/register");
 dist = path.join(__dirname, '../dist');
 app = express();
 
-var React = require('react');
 var summonerService = require('./services/summonerService');
 
 app.use(logger("dev"));
@@ -22,11 +21,11 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(dist));
 
-
 app.set("port", process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, '../dist')));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
 
 app.get('/', function(req, res) {
   res.render('index.ejs', {data: {title: 'League stats'}});

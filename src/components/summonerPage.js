@@ -1,11 +1,16 @@
 var React = require('react');
+var SummonerProfile = require('./summonerProfile');
 
 var SummonerPage = React.createClass({
+    getInitialState: function () {
+        return {
+            summonerData: appData.summonerData
+        };
+    },
     render: function() {
         return (
-            <div>
-                <h1>summoner page</h1>
-                asdfasdfasdf
+            <div className='container'>
+                <SummonerProfile profile = {this.state.summonerData.profile}/>
             </div>
         );
     }
