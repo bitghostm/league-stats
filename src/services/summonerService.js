@@ -37,12 +37,11 @@ function fetch(searchKey, urlName) {
 }
 
 var summonerService = function (req, res, next) {
-    var summonerName = req.params.name;
+    var summonerName = req.params.name.trim().toLowerCase().replace(/\s/g, '');
 
     return rp(leagueApiUrls.getUrlForKey(region, 'getSummonerByName', summonerName))
         .then(function (result) {
             result = JSON.parse(result);
-            summonerName = summonerName.toLowerCase();
             var summonerId = result[summonerName].id;
             req.summonerData =  req.summonerData || {};
             req.summonerData.profile = result[summonerName];
