@@ -52,14 +52,14 @@ var summonerService = function (req, res, next) {
                     req.summonerData.recentMatches = _.map(recentMatches.games, function (game) {
                         game.championName = _.find(championData.data, function (data) {
                             return data.id === game.championId;
-                        }).name;
+                        }).name.replace(/\s/g, '');
                         return game;
                     });
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
                     req.summonerData.rankedStat = _.map(rankedStat.champions, function (champion) {
                         var championName = champion.id === 0 ? '' : _.find(championData.data, function (data) {
                              return data.id === champion.id;
-                        }).name;
+                        }).name.replace(/\s/g, '');
                         var stats = champion.stats;
                         stats.championName = championName;
                         stats.championId = champion.id;
