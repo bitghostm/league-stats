@@ -49,7 +49,15 @@ var summonerService = function (req, res, next) {
                 .spread(function (recentMatches, summaryStat, rankedStat, leagueStat) {
                     req.summonerData.recentMatches = recentMatches.games;
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
-                    req.summonerData.rankedStat = rankedStat.champions;
+                    req.summonerData.rankedStat = _.map(rankedStat.champions, function (champion) {
+                        var championId = champion.id;
+                        var stats = champion.stats;
+                        stats.championId = championId;
+                        return stats;
+                    });
+                    req.summonerData.rankedStatByChampion = _.filter(req.summonerData.rankedStat, function (stat) {
+                        return  stat.championId !== 0;
+                    });
                     req.summonerData.summonerRankedStat = _.find(leagueStat[summonerId][0].entries, function (entry) {
                         return parseInt(entry.playerOrTeamId, 10) === summonerId;
                     });
