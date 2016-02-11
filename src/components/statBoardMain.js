@@ -15,7 +15,7 @@ var s3BaseUrl = config.s3BaseUrl;
 var statBoardMain = React.createClass({
     getInitialState: function () {
         return {
-            statBoardNav: 'summary'
+            rankedStatByChampion: this.props.summonerData.rankedStatByChampion
         };
     },
     handleSelect: function (index, last) {
@@ -34,7 +34,7 @@ var statBoardMain = React.createClass({
                         <SummaryPanel />
                     </TabPanel>
                     <TabPanel>
-                        <RankedStatPanel />
+                        <RankedStatPanel rankedStatByChampion={this.state.rankedStatByChampion} />
                     </TabPanel>
                     <TabPanel>
                         <MatchesPanel />

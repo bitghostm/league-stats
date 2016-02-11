@@ -10,6 +10,7 @@ var SummonerPage = React.createClass({
         };
     },
     render: function() {
+        console.log('summonerData: ', this.state.summonerData);
         return (
             <div className='container'>
                 <SummonerProfile profile={this.state.summonerData.profile} summonerRankedStat={this.state.summonerData.summonerRankedStat} leagueStat={this.state.summonerData.leagueStat}/>

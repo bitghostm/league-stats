@@ -19,6 +19,7 @@
     "ejs": "^2.4.1",
     "es6-promise": "^2.1.1",
     "express": "^4.12.3",
+    "griddle-react": "^0.2.14",
     "gulp": "^3.8.11",
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.7.0",

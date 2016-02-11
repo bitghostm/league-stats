@@ -1,19 +1,20 @@
 var React = require('react');
 var config = require('../config/config');
+var Griddle = require('griddle-react');
 
 var s3BaseUrl = config.s3BaseUrl;
 
 var rankedStatPanel = React.createClass({
     getInitialState: function () {
         return {
-            statBoardNav: 'summary'
+            rankedData: this.props.rankedStatByChampion
         };
     },
 
     render: function() {
         return (
             <section className='row stat-board-section'>
-                <h1>Ranked stat</h1>
+                <Griddle results={this.state.rankedData} useGriddleStyles={false} columns={["championName", "totalSessionsWon", "totalSessionsLost", "totalChampionKills", "totalDeathsPerSession", "totalAssists", "totalMinionKills", "totalGoldEarned"]} />
             </section>
         );
     }

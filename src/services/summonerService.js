@@ -57,7 +57,7 @@ var summonerService = function (req, res, next) {
                         }).name;
                         var stats = champion.stats;
                         stats.championName = championName;
-                        stats.id = champion.id;
+                        stats.championId = champion.id;
                         return stats;
                     });
                     req.summonerData.rankedStatByChampion = _.filter(req.summonerData.rankedStat, function (stat) {
