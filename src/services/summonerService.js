@@ -36,6 +36,7 @@ function fetch(searchKey, urlName) {
         });
 }
 
+
 var summonerService = function (req, res, next) {
     var summonerName = req.params.name.trim().toLowerCase().replace(/\s/g, '');
 
@@ -48,7 +49,12 @@ var summonerService = function (req, res, next) {
 
             return Promise.all([fetchRecentMatches(summonerId), fetchSummaryStat(summonerId), fetchRankedStat(summonerId), fetchLeagueStat(summonerId), fetchChampionData()])
                 .spread(function (recentMatches, summaryStat, rankedStat, leagueStat, championData) {
-                    req.summonerData.recentMatches = recentMatches.games;
+                    req.summonerData.recentMatches = _.map(recentMatches.games, function (game) {
+                        game.championName = _.find(championData.data, function (data) {
+                            return data.id === game.championId;
+                        }).name;
+                        return game;
+                    });
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
                     req.summonerData.rankedStat = _.map(rankedStat.champions, function (champion) {
                         var championName = champion.id === 0 ? '' : _.find(championData.data, function (data) {
