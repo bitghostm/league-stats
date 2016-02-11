@@ -6,6 +6,7 @@ var urls = {
     getMatchById: 'https://na.api.pvp.net/api/lol/{region}/v2.2/match/',
     getRecentMatches: 'https://na.api.pvp.net/api/lol/{region}/v1.3/game/by-summoner/',
     getChampionById: 'https://na.api.pvp.net/api/lol/static-data/{region}/v1.2/champion/',
+    getChampion: 'https://na.api.pvp.net/api/lol/static-data/{region}/v1.2/champion/',
     getSummaryStat: 'https://na.api.pvp.net/api/lol/{region}/v1.3/stats/by-summoner/',
     getRankedStat: 'https://na.api.pvp.net/api/lol/{region}/v1.3/stats/by-summoner/',
     getLeagueStatBySid: 'https://na.api.pvp.net/api/lol/{region}/v2.5/league/by-summoner/'
@@ -31,6 +32,9 @@ module.exports = {
                 break;
             case 'getRankedStat':
                 url = urls[urlName] + searchKey + '/ranked' + '?' + urlSeason + '&' + 'api_key=' + config.leagueAPI;
+                break;
+            case 'getChampion':
+                url = urls[urlName] + '?' + 'api_key=' + config.leagueAPI;
                 break;
             default:
                 url = urls[urlName] + searchKey + '?' + 'api_key=' + config.leagueAPI;

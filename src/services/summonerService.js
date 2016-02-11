@@ -21,8 +21,11 @@ function fetchLeagueStat(summonerId) {
     return fetch(summonerId, 'getLeagueStatBySid');
 }
 
+function fetchChampionData() {
+    return fetch('', 'getChampion');
+}
+
 function fetch(searchKey, urlName) {
-    console.log(leagueApiUrls.getUrlForKey(region, urlName, searchKey, season));
     return rp(leagueApiUrls.getUrlForKey(region, urlName, searchKey, season))
         .then(function (result) {
             result = JSON.parse(result);
@@ -38,21 +41,23 @@ var summonerService = function (req, res, next) {
 
     return rp(leagueApiUrls.getUrlForKey(region, 'getSummonerByName', summonerName))
         .then(function (result) {
-            console.log(result);
             result = JSON.parse(result);
             summonerName = summonerName.toLowerCase();
             var summonerId = result[summonerName].id;
             req.summonerData =  req.summonerData || {};
             req.summonerData.profile = result[summonerName];
 
-            return Promise.all([fetchRecentMatches(summonerId), fetchSummaryStat(summonerId), fetchRankedStat(summonerId), fetchLeagueStat(summonerId)])
-                .spread(function (recentMatches, summaryStat, rankedStat, leagueStat) {
+            return Promise.all([fetchRecentMatches(summonerId), fetchSummaryStat(summonerId), fetchRankedStat(summonerId), fetchLeagueStat(summonerId), fetchChampionData()])
+                .spread(function (recentMatches, summaryStat, rankedStat, leagueStat, championData) {
                     req.summonerData.recentMatches = recentMatches.games;
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
                     req.summonerData.rankedStat = _.map(rankedStat.champions, function (champion) {
-                        var championId = champion.id;
+                        var championName = champion.id === 0 ? '' : _.find(championData.data, function (data) {
+                             return data.id === champion.id;
+                        }).name;
                         var stats = champion.stats;
-                        stats.championId = championId;
+                        stats.championName = championName;
+                        stats.id = champion.id;
                         return stats;
                     });
                     req.summonerData.rankedStatByChampion = _.filter(req.summonerData.rankedStat, function (stat) {
