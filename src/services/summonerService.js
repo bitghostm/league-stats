@@ -36,12 +36,17 @@ var summonerService = function (req, res, next) {
         .then(function (result) {
             result = JSON.parse(result);
             var summonerId = result[summonerName].id;
+            req.summonerData =  req.summonerData || {};
+            req.summonerData.profile = result[summonerName];
+
             return Promise.all([fetchRecentMatches(summonerId), fetchSummaryStat(summonerId), fetchRankedStat(summonerId), fetchLeagueStat(summonerId)])
                 .spread(function (recentMatches, summaryStat, rankedStat, leagueStat) {
-                    req.summonerData =  req.summonerData || {};
                     req.summonerData.recentMatches = recentMatches.games;
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
                     req.summonerData.rankedStat = rankedStat.champions;
+                    req.summonerData.summonerRankedStat = _.find(leagueStat[summonerId][0].entries, function (entry) {
+                        return parseInt(entry.playerOrTeamId, 10) === summonerId;
+                    });
                     req.summonerData.leagueStat = leagueStat[summonerId];
                     return next();
                 });
