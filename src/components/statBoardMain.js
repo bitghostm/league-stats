@@ -24,7 +24,7 @@ var statBoardMain = React.createClass({
     render: function() {
         return (
             <section className='row stat-board-section'>
-                <Tabs onSelect={this.handleSelect} selectedIndex={2}>
+                <Tabs onSelect={this.handleSelect} selectedIndex={1}>
                     <TabList>
                         <Tab>Summary</Tab>
                         <Tab>Ranked Stat</Tab>
