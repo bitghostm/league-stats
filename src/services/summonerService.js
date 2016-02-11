@@ -47,7 +47,7 @@ var summonerService = function (req, res, next) {
                     req.summonerData.summonerRankedStat = _.find(leagueStat[summonerId][0].entries, function (entry) {
                         return parseInt(entry.playerOrTeamId, 10) === summonerId;
                     });
-                    req.summonerData.leagueStat = leagueStat[summonerId];
+                    req.summonerData.leagueStat = leagueStat[summonerId][0];
                     return next();
                 });
         }).catch(function (err) {
