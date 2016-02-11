@@ -1,5 +1,7 @@
 var React = require('react');
 var SummonerProfile = require('./summonerProfile');
+var StatBoardMain = require('./statBoardMain');
+
 
 var SummonerPage = React.createClass({
     getInitialState: function () {
@@ -11,6 +13,7 @@ var SummonerPage = React.createClass({
         return (
             <div className='container'>
                 <SummonerProfile profile={this.state.summonerData.profile} summonerRankedStat={this.state.summonerData.summonerRankedStat} leagueStat={this.state.summonerData.leagueStat}/>
+                <StatBoardMain summonerData={this.state.summonerData}/>
             </div>
         );
     }
