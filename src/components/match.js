@@ -16,7 +16,6 @@ var matchesPanel = React.createClass({
         var assists = matchData.stats.assists ? parseFloat(matchData.stats.assists) : 0;
         var kda = death !== 0 ? ((kill+assists) / death).toFixed(2) : 0;
 
-        console.log(kill, ' ', death, ' ', assists);
         if (subType.indexOf('NORMAL') !== -1) {
             gameType = 'Normal';
         } else if (subType.indexOf('RANKED') !== -1 && subType.indexOf('UNRANKED') === -1) {
@@ -31,53 +30,139 @@ var matchesPanel = React.createClass({
 
         matchData.gameTypeString = gameType;
         matchData.stats.kda = kda;
+
+        var team1=[];
+        var team2=[];
+
+        if (matchData.fellowPlayers) {
+            team1 = _.filter(matchData.fellowPlayers, function (player) {
+                return parseInt(player.teamId) === 100;
+            });
+
+            team2 = _.filter(matchData.fellowPlayers, function (player) {
+                return parseInt(player.teamId) === 200;
+            });
+
+            if (team1.length === 4) {
+                team1.push({'championName': matchData.championName, 'teamId': 100});
+            } else {
+                team2.push({'championName': matchData.championName, 'teamId': 200});
+            }
+        }
+
+
+
+        console.log('team1: ', team1);
+
         return {
             summonerSpellBaseUrl: s3BaseUrl + '/spell/',
             itemBaseUrl: s3BaseUrl + '/item/',
+            championBaseUrl: s3BaseUrl + '/champion/',
             match: matchData,
-            stats: matchData.stats
+            stats: matchData.stats,
+            team1: team1,
+            team2: team2
         };
     },
-
     render: function() {
         return (
             <div className="row">
-                <div className= {"panel panel-default " + (this.state.stats.win ? 'match-win' : 'match-lose')}>
-                    <div className="panel-heading">
+                <div className="container col-md-10 col-sm-10">
+                    <div className= {"panel panel-default " + (this.state.stats.win ? 'match-win' : 'match-lose')}>
+                        <div className="panel-heading">
                             <span className="panel-heading-name">{this.state.match.gameTypeString}</span>
                             <span className={'pull-right ' + (this.state.stats.win ? 'font-green-color' : 'font-red-color')}>{this.state.stats.win ? 'Victory' : 'Defeat'}</span>
-                    </div>
-                    <div className="panel-body">
-                        <div className="row">
-                            <div className="col-md-1 col-sm-1">
-                                <img className='img-circle match-champion-icon' src={s3BaseUrl + '/champion/' + this.state.match.championName + '.png'} alt="icon"/>
-                                <div className='match-champion-name'>{this.state.match.championName}</div>
-                            </div>
-                            <div className="col-md-1 col-sm-1">
-                                <img className='img-rounded match-spell-icon' src={this.state.summonerSpellBaseUrl + this.state.match.spell1 + '.png'} alt="icon"/>
-                                <img className='img-rounded match-spell-icon' src={this.state.summonerSpellBaseUrl + this.state.match.spell2 + '.png'} alt="icon"/>
-                            </div>
-                            <div className="col-md-2 col-sm-2 font-grey-color">
-                                <div className="match-kills-stats">
-                                    <span className=" font-green-color">{this.state.stats.championsKilled || 0}</span> / <span className="font-red-color">{this.state.stats.numDeaths || 0}</span> / <span>{this.state.stats.assists || 0}</span>
+                        </div>
+                        <div className="panel-body">
+                            <div className="row">
+                                <div className="col-md-1 col-sm-1">
+                                    <img className='img-circle match-champion-icon' src={this.state.championBaseUrl + this.state.match.championName + '.png'} alt="icon"/>
+                                    <div className='match-champion-name'>{this.state.match.championName}</div>
                                 </div>
-                                <div>
-                                    {
-                                        this.state.stats.kda !== 0
-                                            ?
-                                            <span className='match-kda'>
+                                <div className="col-md-1 col-sm-1">
+                                    <img className='img-rounded match-spell-icon' src={this.state.summonerSpellBaseUrl + this.state.match.spell1 + '.png'} alt="icon"/>
+                                    <img className='img-rounded match-spell-icon' src={this.state.summonerSpellBaseUrl + this.state.match.spell2 + '.png'} alt="icon"/>
+                                </div>
+                                <div className="col-md-2 col-sm-2 font-grey-color">
+                                    <div className="match-kills-stats">
+                                        <span className=" font-green-color">{this.state.stats.championsKilled || 0}</span> / <span className="font-red-color">{this.state.stats.numDeaths || 0}</span> / <span>{this.state.stats.assists || 0}</span>
+                                    </div>
+                                    <div>
+                                        {
+                                            this.state.stats.kda !== 0
+                                                ?
+                                                <span className='match-kda'>
                                                 <span className='match-kda-number'>{this.state.stats.kda}</span> KDA
                                             </span>
-                                            : <span></span>
-                                    }
+                                                : <span></span>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                
+                                <div className="col-md-2 col-sm-2 font-grey-color">
+                                    <div>Level <span className="match-kda-number">{this.state.stats.level}</span></div>
+                                    <div><span className="match-kda-number">{this.state.stats.goldEarned} </span><span className='match-gold'>Gold</span></div>
+                                    <div><span className="match-kda-number">{this.state.stats.minionsKilled}</span> CK</div>
+                                </div>
+                                <div className="col-md-2 col-sm-2">
+                                    <div className="row">
+                                        <div className="col-md-9 col-sm-9 match-items">
+                                            <div>
+                                                {this.state.stats.item0 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item0 + '.png'} alt="icon"></img> : <span></span>}
+                                                {this.state.stats.item1 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item1 + '.png'} alt="icon"></img> : <span></span>}
+                                                {this.state.stats.item2 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item2 + '.png'} alt="icon"></img> : <span></span>}
+                                            </div>
+                                            <div>
+                                                {this.state.stats.item3 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item3 + '.png'} alt="icon"></img> : <span></span>}
+                                                {this.state.stats.item4 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item4 + '.png'} alt="icon"></img> : <span></span>}
+                                                {this.state.stats.item5 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item5 + '.png'} alt="icon"></img> : <span></span>}
+                                            </div>
+                                        </div>
+                                        <div className="col-md-3 col-sm-3 match-trinket">
+                                            {this.state.stats.item6 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item6 + '.png'} alt="icon"></img> : <span></span>}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-4 font-grey-color match-players">
+                                    <div className="row">
+                                        <div className="col-md-5 col-sm-5">
+                                            {
+                                                this.state.team1 ? <TeamComponent teamData={this.state.team1} championBaseUrl={this.state.championBaseUrl}/> : <div></div>
+                                            }
+                                        </div>
+                                        <div className="col-md-6 col-sm-6">
+                                            {
+                                                this.state.team2 ? <TeamComponent teamData={this.state.team2} championBaseUrl={this.state.championBaseUrl}/> : <div></div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        );
+    }
+});
+
+var TeamComponent = React.createClass({
+    getInitialState: function () {
+        var teamData = this.props.teamData;
+        console.log('teamData: ', teamData);
+        var teamComponent = [];
+        var that = this;
+        _.each(teamData, function (data) {
+            teamComponent.push(<div><img className='img-rounded match-player-icon' src={that.props.championBaseUrl + data.championName + '.png'} alt="icon"></img> {data.championName}</div>);
+        });
+        return {
+            teamComponent: teamComponent
+        };
+    },
+    render: function () {
+        return (
+            <div>
+                {this.state.teamComponent}
             </div>
         );
     }

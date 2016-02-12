@@ -85,7 +85,6 @@ function buildChampionMap(championData) {
     if (championData) {
         var championMap = [];
         _.each(championData, function (data) {
-            console.log(data.name);
             championMap[data.id] = data.name.replace(/\s/g, '');;
         });
         return championMap;

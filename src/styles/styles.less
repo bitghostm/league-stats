@@ -6,6 +6,7 @@
 @font-black-color: #333333;
 @font-orange-color: #FF7400;
 @font-green-color: #259b24;
+@font-gold-color: #FFD700;
 @border-grey-color: #b3b3b3;
 @win-color: #a3cfec;
 @lose-color: #e2b6b3;
@@ -22,7 +23,15 @@
 
 .profile-section {
   //padding: 30px 15px;
-  //background-color: lightgrey;
+  background-color: inherit;
+}
+
+.header-section {
+  background-color: #F3F5F7;
+}
+
+.board-section {
+  background-color: #FFFFFF;
 }
 
 .profile-icon {
@@ -35,6 +44,15 @@
 
 .profile-info-name {
   font-size: 20px
+}
+
+.react-tabs [role=tablist] {
+    margin: 0px;
+}
+
+.react-tabs [role=tabpanel] {
+  background-color: #FFFFFF;
+  padding-top: 20px;
 }
 
 .griddle {
@@ -92,7 +110,7 @@
 .match-champion-name {
   font-weight: bold;
   font-size: 14px;
-  padding: 10px 0px 0px 20px;
+  padding: 10px 0px 0px 0px;
 }
 
 .match-spell-icon {
@@ -108,12 +126,39 @@
 
 .match-kda {
   font-size: 14px;
-  .match-kda-number {
-    font-weight: bold;
-    color: @font-black-color;
-  }
 }
 
+.match-kda-number {
+  font-weight: bold;
+  color: @font-black-color;
+}
+
+.match-gold {
+  color: @font-gold-color;
+}
+
+.match-items {
+  padding-right: 0px;
+}
+
+.match-item-icon {
+  width: 28px;
+  height: 28px;
+  margin: 1px;
+}
+
+.match-player-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.match-players {
+  padding-left: 40px;
+}
+
+.match-trinket {
+  padding-left: 0px;
+}
 
 .font-red-color {
   color: @font-red-color;
@@ -143,6 +188,8 @@
   border-color: @border-grey-color;
   background-color: inherit;
 }
+
 .font-green-color {
   color: @font-green-color;
 }
+
