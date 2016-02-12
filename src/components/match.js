@@ -100,12 +100,12 @@ var matchesPanel = React.createClass({
                                 </div>
                                 <div className="col-md-2 col-sm-2 font-grey-color">
                                     <div>Level <span className="match-kda-number">{this.state.stats.level}</span></div>
-                                    <div><span className="match-kda-number">{this.state.stats.goldEarned} </span><span className='match-gold'>Gold</span></div>
+                                    <div><span className="match-kda-number">{this.state.stats.goldEarned} </span><span className='match-gold'>G</span></div>
                                     <div><span className="match-kda-number">{this.state.stats.minionsKilled}</span> CK</div>
                                 </div>
                                 <div className="col-md-2 col-sm-2">
                                     <div className="row">
-                                        <div className="col-md-9 col-sm-9 match-items">
+                                        <div className="col-lg-7 col-md-10 col-sm-10 match-items">
                                             <div>
                                                 {this.state.stats.item0 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item0 + '.png'} alt="icon"></img> : <span></span>}
                                                 {this.state.stats.item1 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item1 + '.png'} alt="icon"></img> : <span></span>}
@@ -117,7 +117,7 @@ var matchesPanel = React.createClass({
                                                 {this.state.stats.item5 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item5 + '.png'} alt="icon"></img> : <span></span>}
                                             </div>
                                         </div>
-                                        <div className="col-md-3 col-sm-3 match-trinket">
+                                        <div className="col-md-2 col-sm-2 match-trinket">
                                             {this.state.stats.item6 ? <img className='img-rounded match-item-icon' src={this.state.itemBaseUrl + this.state.stats.item6 + '.png'} alt="icon"></img> : <span></span>}
 
                                         </div>
@@ -125,7 +125,7 @@ var matchesPanel = React.createClass({
                                 </div>
                                 <div className="col-md-4 col-sm-4 font-grey-color match-players">
                                     <div className="row">
-                                        <div className="col-md-5 col-sm-5">
+                                        <div className="col-md-5 col-sm-6">
                                             {
                                                 this.state.team1 ? <TeamComponent teamData={this.state.team1} championBaseUrl={this.state.championBaseUrl}/> : <div></div>
                                             }

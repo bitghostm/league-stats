@@ -28,10 +28,16 @@
 
 .header-section {
   background-color: #F3F5F7;
+  //background-color: #3e485e;
 }
 
 .board-section {
   background-color: #FFFFFF;
+  margin-bottom: 0px;
+}
+
+.jumbotron {
+  margin-bottom: 0px;
 }
 
 .profile-icon {
@@ -39,11 +45,53 @@
 }
 
 .profile-info {
+  color: @font-grey-color;
+  font-size: 20px;
 
+  .profile-info-name {
+    color: @font-black-color;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .profile-info-level {
+    color: @font-black-color;
+    font-weight: bold;
+  }
 }
 
-.profile-info-name {
-  font-size: 20px
+.profile-ranked-info {
+  padding-top: 6px;
+  color: @font-grey-color;
+  font-size: 16px;
+
+  .profile-ranked-info-tier {
+    color: @font-black-color;
+    font-weight: bold;
+  }
+
+  .profile-ranked-info-win-lose {
+    font-weight: bold;
+    color: @font-black-color;
+  }
+
+  .profile-ranked-info-lp-number {
+    color: @font-black-color;
+    font-weight: bold;
+  }
+
+  .profile-ranked-win {
+    color: @font-green-color;
+    font-weight: bold;
+  }
+  .profile-ranked-lose {
+    color: @font-red-color;
+    font-weight: bold;
+  }
+}
+
+.react-tabs [role=tab] {
+  color: @font-grey-color;
+  font-weight: bold;
 }
 
 .react-tabs [role=tablist] {

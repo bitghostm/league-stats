@@ -33,19 +33,19 @@ var summonerProfile = React.createClass({
         }
         return (
             <section className='row jumbotron profile-section'>
-                <div className='profile-icon col-md-4 col-sm-4'>
+                <div className='profile-icon col-lg-2 col-md-2 col-sm-3'>
                     <img src={s3BaseUrl + '/profileicon/' + this.state.profileIconId + '.png'} alt="profile icon" className="img-rounded"/>
                 </div>
                 <div className='profile-info col-md-4 col-sm-4'>
                     <div className='profile-info-name'>{this.state.summonerName}</div>
-                    <div className='profile-info-name'>Level {this.state.summonerLevel}</div>
+                    <div>Level <span className='profile-info-level'>{this.state.summonerLevel}</span></div>
                 </div>
                 {
                     this.props.leagueStat ?
                     <div className='profile-ranked-info col-md-4 col-sm-4'>
-                        <div className='profile-ranked-info-tier'>{this.state.leagueStatTier} {this.state.division}</div>
-                        <div className='profile-ranked-info-lp'>{this.state.leaguePoints} LP</div>
-                        <div className='profile-ranked-info-win-loss'>{this.state.wins}W/{this.state.losses}L</div>
+                        <div className='profile-ranked-info-tier'><span className="profile-ranked-info-tier">{this.state.leagueStatTier}</span> {this.state.division}</div>
+                        <div className='profile-ranked-info-lp'><span className="profile-ranked-info-lp-number">{this.state.leaguePoints}</span> LP</div>
+                        <div className='profile-ranked-info-win-lose'>{this.state.wins}<span className="profile-ranked-win"> W</span> / {this.state.losses}<span className="profile-ranked-lose"> L</span></div>
                         <div className='profile-ranked-info-lp'>{this.state.leagueStatName}</div>
                     </div>
                         :
