@@ -49,17 +49,18 @@ var summonerService = function (req, res, next) {
 
             return Promise.all([fetchRecentMatches(summonerId), fetchSummaryStat(summonerId), fetchRankedStat(summonerId), fetchLeagueStat(summonerId), fetchChampionData()])
                 .spread(function (recentMatches, summaryStat, rankedStat, leagueStat, championData) {
+                    var championMap = buildChampionMap(championData.data);
                     req.summonerData.recentMatches = _.map(recentMatches.games, function (game) {
-                        game.championName = _.find(championData.data, function (data) {
-                            return data.id === game.championId;
-                        }).name.replace(/\s/g, '');
+                        game.championName = championMap[game.championId];
+                        game.fellowPlayers = _.map(game.fellowPlayers, function (player) {
+                            player.championName = championMap[player.championId];
+                            return player;
+                        });
                         return game;
                     });
                     req.summonerData.summaryStat = summaryStat.playerStatSummaries;
                     req.summonerData.rankedStat = _.map(rankedStat.champions, function (champion) {
-                        var championName = champion.id === 0 ? '' : _.find(championData.data, function (data) {
-                             return data.id === champion.id;
-                        }).name.replace(/\s/g, '');
+                        var championName = champion.id === 0 ? '' : championMap[champion.id];
                         var stats = champion.stats;
                         stats.championName = championName;
                         stats.championId = champion.id;
@@ -79,5 +80,18 @@ var summonerService = function (req, res, next) {
             return next();
         });
 };
+
+function buildChampionMap(championData) {
+    if (championData) {
+        var championMap = [];
+        _.each(championData, function (data) {
+            console.log(data.name);
+            championMap[data.id] = data.name.replace(/\s/g, '');;
+        });
+        return championMap;
+    }
+
+    return [];
+}
 
 module.exports = summonerService;
