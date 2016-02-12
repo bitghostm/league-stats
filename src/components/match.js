@@ -97,7 +97,7 @@ var matchesPanel = React.createClass({
                                         }
                                     </div>
                                 </div>
-                                <div className="col-md-1 col-sm-1 font-grey-color">
+                                <div className="col-md-1 col-sm-1 font-grey-color match-level">
                                     <div>Level <span className="match-kda-number">{this.state.stats.level}</span></div>
                                     <div><span className="match-kda-number">{this.state.stats.goldEarned} </span><span className='match-gold'>G</span></div>
                                     <div><span className="match-kda-number">{this.state.stats.minionsKilled}</span> CK</div>

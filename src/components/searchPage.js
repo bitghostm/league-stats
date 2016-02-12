@@ -7,7 +7,9 @@ var SearchPage = React.createClass({
         };
     },
     handleSearchClick: function () {
-        window.location = 'summoner/' + this.state.searchName;
+        if (this.state.searchName.trim()) {
+            window.location = 'summoner/' + this.state.searchName.trim();
+        }
     },
     handleSearchChange: function (event) {
         this.setState({
@@ -16,8 +18,10 @@ var SearchPage = React.createClass({
     },
     render: function() {
         return (
-            <div className="index-layout-wrap">
-                <div className="search-wrap">
+            <div>
+            <div className="bg-dimmer">
+            </div>
+                <div className="index-layout-wrap">
                     <div className="search-container">
                         <div className="container">
                             <div className="row">
@@ -34,8 +38,9 @@ var SearchPage = React.createClass({
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
+                </div>
         );
     }
 });

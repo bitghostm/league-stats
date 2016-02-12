@@ -12,23 +12,53 @@
 @lose-color: #e2b6b3;
 @panel-tab-padding: 150px;
 @panel-section-padding: @panel-tab-padding + 15px;
+@search-background-color: #253545;
 
+.bg-dimmer {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: #000;
+  opacity:0.7;
+  z-index:1;
+  filter: blur(10px);
+}
 
 .index-layout-wrap {
   min-height: 100%;
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #0092c9;
-}
-
-.search-wrap {
-  padding: 300px;
+  background-image: url('http://na.leagueoflegends.com/sites/default/files/upload/art/teambuilder-wallpaper.jpg');
+  background-position: center center;
 }
 
 .search-container {
-  padding: 50px;
-  background-color: inherit;
+  padding-top: 300px;
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  input {
+    line-height: 1.4em;
+    font-size: 1.4em;
+    padding: 30px;
+  }
+  button {
+    padding: 20px;
+  }
+}
+
+.top-search-bar-wrap {
+  padding: 30px;
+  background-color: @search-background-color;
+}
+
+.top-search-bar {
+  float: none;
+  margin: 0 auto;
+  left: -100px;
 }
 
 .profile-section {
@@ -194,7 +224,7 @@
   }
 
   .griddle-page {
-    text-align:center;
+    text-align: center;
   }
 
   .griddle-next {
@@ -205,6 +235,16 @@
 .champion-column-icon {
   width: 32px;
   height: 32px;
+}
+
+.brand-league-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.match-level {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .match-win {
