@@ -42,8 +42,8 @@ var rankedStatPanel = React.createClass({
 
     render: function() {
         return (
-            <section className='row stat-board-section'>
-                <Griddle results={this.state.rankedData} useGriddleStyles={false} columnMetadata={columnMetadata}
+            <section className='row ranked-stat-panel-section'>
+                <Griddle results={this.state.rankedData} useGriddleStyles={true} columnMetadata={columnMetadata}
                          noDataMessage={"No ranked data is available."} resultsPerPage={config.resultsPerPage}
                          columns={["championName", "totalSessionsWon", "totalSessionsLost", "totalChampionKills", "totalDeathsPerSession", "totalAssists", "totalMinionKills", "totalGoldEarned"]} />
             </section>

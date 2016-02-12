@@ -11,7 +11,6 @@ var SummonerPage = React.createClass({
         };
     },
     render: function() {
-        console.log('summonerData: ', this.state.summonerData);
         return (
             <div>
                 <TopSearchBar />

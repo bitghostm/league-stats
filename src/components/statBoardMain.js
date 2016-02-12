@@ -18,13 +18,10 @@ var statBoardMain = React.createClass({
             rankedStatByChampion: this.props.summonerData.rankedStatByChampion
         };
     },
-    handleSelect: function (index, last) {
-        console.log('Selected tab: ' + index + ', Last tab: ' + last);
-    },
     render: function() {
         return (
             <section className='row stat-board-section'>
-                    <Tabs onSelect={this.handleSelect} selectedIndex={0}>
+                    <Tabs selectedIndex={0}>
                         <TabList>
                             <Tab>Recent Matches</Tab>
                             <Tab>Ranked Stats</Tab>
