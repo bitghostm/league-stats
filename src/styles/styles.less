@@ -10,6 +10,9 @@
 @border-grey-color: #b3b3b3;
 @win-color: #a3cfec;
 @lose-color: #e2b6b3;
+@panel-tab-padding: 170px;
+@panel-section-padding: @panel-tab-padding + 15px;
+
 
 .search-wrap {
   padding: 28px;
@@ -95,12 +98,14 @@
 }
 
 .react-tabs [role=tablist] {
-    margin: 0px;
+  padding-left: @panel-tab-padding;
+  margin: 0px;
 }
 
 .react-tabs [role=tabpanel] {
   background-color: #FFFFFF;
-  padding-top: 20px;
+  padding-left: @panel-section-padding;
+  padding-top: 40px;
 }
 
 .griddle {
@@ -201,7 +206,6 @@
 }
 
 .match-players {
-  padding-left: 40px;
 }
 
 .match-trinket {
@@ -226,6 +230,15 @@
 
 .panel {
   border-color: @border-grey-color;
+  margin-bottom: 10px;
+}
+
+.panel-heading {
+  padding: 5px 15px;
+}
+
+.panel-body {
+  padding: 10px 15px;
 }
 
 .panel-heading-name {

@@ -27,7 +27,7 @@ var statBoardMain = React.createClass({
                     <Tabs onSelect={this.handleSelect} selectedIndex={0}>
                         <TabList>
                             <Tab>Recent Matches</Tab>
-                            <Tab>Ranked Stat</Tab>
+                            <Tab>Ranked Stats</Tab>
                         </TabList>
                         <TabPanel>
                             <MatchesPanel recentMatches={this.props.summonerData.recentMatches}/>

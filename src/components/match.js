@@ -67,7 +67,7 @@ var matchesPanel = React.createClass({
     render: function() {
         return (
             <div className="row">
-                <div className="container col-md-10 col-sm-10">
+                <div className="container col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div className= {"panel panel-default " + (this.state.stats.win ? 'match-win' : 'match-lose')}>
                         <div className="panel-heading">
                             <span className="panel-heading-name">{this.state.match.gameTypeString}</span>
@@ -98,12 +98,12 @@ var matchesPanel = React.createClass({
                                         }
                                     </div>
                                 </div>
-                                <div className="col-md-2 col-sm-2 font-grey-color">
+                                <div className="col-md-1 col-sm-1 font-grey-color">
                                     <div>Level <span className="match-kda-number">{this.state.stats.level}</span></div>
                                     <div><span className="match-kda-number">{this.state.stats.goldEarned} </span><span className='match-gold'>G</span></div>
                                     <div><span className="match-kda-number">{this.state.stats.minionsKilled}</span> CK</div>
                                 </div>
-                                <div className="col-md-2 col-sm-2">
+                                <div className="col-lg-3 col-md-3 col-sm-3">
                                     <div className="row">
                                         <div className="col-lg-7 col-md-10 col-sm-10 match-items">
                                             <div>
@@ -125,7 +125,7 @@ var matchesPanel = React.createClass({
                                 </div>
                                 <div className="col-md-4 col-sm-4 font-grey-color match-players">
                                     <div className="row">
-                                        <div className="col-md-5 col-sm-6">
+                                        <div className="col-md-6 col-sm-6">
                                             {
                                                 this.state.team1 ? <TeamComponent teamData={this.state.team1} championBaseUrl={this.state.championBaseUrl}/> : <div></div>
                                             }
