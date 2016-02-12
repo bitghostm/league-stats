@@ -14,14 +14,23 @@ var SummonerPage = React.createClass({
         return (
             <div>
                 <TopSearchBar />
-                <div className='header-section'>
-                    <div className='container'>
-                        <SummonerProfile profile={this.state.summonerData.profile} summonerRankedStat={this.state.summonerData.summonerRankedStat} leagueStat={this.state.summonerData.leagueStat}/>
+                {
+                    this.state.summonerData && this.state.summonerData.profile ?
+                    <div className='header-section'>
+                        <div className='container'>
+                            <SummonerProfile profile={this.state.summonerData.profile} summonerRankedStat={this.state.summonerData.summonerRankedStat} leagueStat={this.state.summonerData.leagueStat}/>
+                        </div>
+                        <div className=''>
+                            <StatBoardMain summonerData={this.state.summonerData}/>
+                        </div>
                     </div>
-                    <div className=''>
-                        <StatBoardMain summonerData={this.state.summonerData}/>
+                    :
+                    <div className="error-holder">
+                        <div className="alert alert-danger" role="alert">
+                            Summoner {this.state.summonerData.summonerName} not found.
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         );
     }

@@ -76,7 +76,9 @@ var summonerService = function (req, res, next) {
                     return next();
                 });
         }).catch(function (err) {
-            console.log(err);
+            if (err.statusCode === 404) {
+                req.summonerData = {summonerName: summonerName};
+            }
             return next();
         });
 };
