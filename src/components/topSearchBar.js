@@ -8,13 +8,19 @@ var TopSearchBar = React.createClass({
     },
     handleSearchClick: function () {
         if (this.state.searchName.trim()) {
-            window.location = 'summoner/' + this.state.searchName.trim();
+            window.location = this.state.searchName.trim();
         }
     },
     handleSearchChange: function (event) {
         this.setState({
             searchName: event.target.value
         });
+    },
+    handleEnter: function(e) {
+        var ENTER = 13;
+        if( e.keyCode == ENTER ) {
+            this.handleSearchClick();
+        }
     },
     render: function() {
         return (
@@ -23,7 +29,7 @@ var TopSearchBar = React.createClass({
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-xs-8 top-search-bar">
                             <div className="input-group">
-                                <input type="text" className="form-control" value={this.state.searchName} onChange={this.handleSearchChange} placeholder="Enter the Summoner's name"/>
+                                <input type="text" className="form-control" onKeyDown={this.handleEnter} value={this.state.searchName} onChange={this.handleSearchChange} placeholder="Enter the Summoner's name"/>
                             <span className="input-group-btn">
                                 <button className="btn btn-default" onClick={this.handleSearchClick} type="submit">
                                     Search
