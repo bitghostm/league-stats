@@ -1,6 +1,14 @@
 @import (less) "bootstrap/less/bootstrap.less";
 
 @search-page-color: #474544;
+@font-grey-color: #555e5e;
+@font-red-color: #e51c23;
+@font-black-color: #333333;
+@font-orange-color: #FF7400;
+@font-green-color: #259b24;
+@border-grey-color: #b3b3b3;
+@win-color: #a3cfec;
+@lose-color: #e2b6b3;
 
 .search-wrap {
   padding: 28px;
@@ -47,24 +55,94 @@
     width: 140px;
   }
 
-  .griddle-previous, .griddle .griddle-page, .griddle .griddle-next{
+  .griddle-previous, .griddle .griddle-page, .griddle .griddle-next {
     float:left;
     width:33%;
     min-height:1px;
     margin-top:5px;
   }
 
-  .griddle-page{
+  .griddle-page {
     text-align:center;
   }
 
-  .griddle-next{
+  .griddle-next {
     text-align:right;
   }
 }
 
-
-.champion-column-icon{
+.champion-column-icon {
   width: 32px;
   height: 32px;
+}
+
+.match-win {
+  background-color: @win-color;
+}
+
+.match-lose{
+  background-color: @lose-color;
+}
+
+.match-champion-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.match-champion-name {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 0px 0px 20px;
+}
+
+.match-spell-icon {
+  width: 28px;
+  height: 28px;
+  margin: 1px;
+}
+
+.match-kills-stats {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.match-kda {
+  font-size: 14px;
+  .match-kda-number {
+    font-weight: bold;
+    color: @font-black-color;
+  }
+}
+
+
+.font-red-color {
+  color: @font-red-color;
+}
+
+.font-grey-color {
+  color: @font-grey-color;
+}
+
+.font-black-color {
+  color: @font-black-color;
+}
+
+.font-orange-color {
+  color: @font-orange-color;
+}
+
+.panel {
+  border-color: @border-grey-color;
+}
+
+.panel-heading-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+.panel-default > .panel-heading {
+  border-color: @border-grey-color;
+  background-color: inherit;
+}
+.font-green-color {
+  color: @font-green-color;
 }

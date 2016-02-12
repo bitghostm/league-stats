@@ -29,6 +29,7 @@
     "gulp-util": "^3.0.3",
     "gulp-webpack": "^1.4.0",
     "jquery": "^2.1.4",
+    "moment": "^2.11.2",
     "morgan": "^1.5.3",
     "node-jsx": "^0.13.3",
     "react": "^0.13.0",

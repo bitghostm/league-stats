@@ -1,19 +1,23 @@
 var React = require('react');
 var config = require('../config/config');
+var Match = require('./match');
 
 var s3BaseUrl = config.s3BaseUrl;
 
 var matchesPanel = React.createClass({
     getInitialState: function () {
         return {
-            statBoardNav: 'summary'
         };
     },
 
     render: function() {
+        var matches = [];
+        this.props.recentMatches.forEach(function (match) {
+            matches.push(<Match matchStats={match}/>)
+        });
         return (
             <section className='row stat-board-section'>
-                <h1>matchesPanel</h1>
+                <div>{matches}</div>
             </section>
         );
     }
