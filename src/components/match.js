@@ -52,7 +52,6 @@ var matchesPanel = React.createClass({
 
 
 
-        console.log('team1: ', team1);
 
         return {
             summonerSpellBaseUrl: s3BaseUrl + '/spell/',
@@ -149,7 +148,6 @@ var matchesPanel = React.createClass({
 var TeamComponent = React.createClass({
     getInitialState: function () {
         var teamData = this.props.teamData;
-        console.log('teamData: ', teamData);
         var teamComponent = [];
         var that = this;
         _.each(teamData, function (data) {
